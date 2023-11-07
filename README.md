@@ -1,4 +1,4 @@
-# Laboratorio-10 Grupo N°3
+# Laboratorio-10 Grupo N°3-Seccion-A
 
 ## Integrantes
 
