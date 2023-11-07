@@ -1,6 +1,6 @@
-### Laboratorio-10 Grupo N°3
+# Laboratorio-10 Grupo N°3
 
-### Integrantes
+## Integrantes
 
 ### Mondragón Manchay, Duberly Ivan 
 ### Hernandez Carhuajulca, Pedro Enrique
