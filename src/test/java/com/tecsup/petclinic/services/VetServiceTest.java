@@ -37,7 +37,7 @@ public class VetServiceTest {
             fail(e.getMessage());
         }
 
-        // ------------ Validar Eliminación ---------------
+        // ------------ Validar Eliminación ----------------
         try {
             this.vetService.findById(vet.getId());
             assertTrue(false, "Se esperaba VetNotFoundException");
