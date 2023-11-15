@@ -20,30 +20,39 @@ public class VetServiceTest {
 
 
     @Test
-    public void testDeleteVet() {
+    public void testUpdateVet() {
 
-        String FIRST_NAME = "James";
-        String LAST_NAME = "Carter";
+        String VET_FIRST_NAME = "James";
+        String VET_LAST_NAME = "Carter";
 
-        // ------------ Crear Veterinario ---------------
-        Vet vet = new Vet(FIRST_NAME, LAST_NAME);
-        vet = this.vetService.create(vet);
-        log.info("Veterinario creado: " + vet);
+        String UP_VET_FIRST_NAME = "Antonio";
+        String UP_VET_LAST_NAME = "Guzman";
 
-        // ------------ Eliminar Veterinario ---------------
-        try {
-            this.vetService.delete(vet.getId());
-        } catch (VetNotFoundException e) {
-            fail(e.getMessage());
-        }
+        Vet vet = new Vet(VET_FIRST_NAME, VET_LAST_NAME);
+        // ------------ Create ---------------
+        log.info("Creating vet: {}", vet);
+        Vet vetCreated = this.vetService.create(vet);
+        log.info("Vet created: {}", vetCreated);
+        // ------------ Update ---------------
+        // Prepare data for update
+        vetCreated.setFirstName(UP_VET_FIRST_NAME);
+        vetCreated.setLastName(UP_VET_LAST_NAME);
+        // Actualiza otros atributos si es necesario
+        // ...
+        // Execute update
+        Vet updatedVet = this.vetService.update(vetCreated);
+        log.info("Vet updated: {}", updatedVet);
 
-        // ------------ Validar Eliminación ----------------
-        try {
-            this.vetService.findById(vet.getId());
-            assertTrue(false, "Se esperaba VetNotFoundException");
-        } catch (VetNotFoundException e) {
-            assertTrue(true);
-        }
+
+        // ------------ Validation ---------------
+
+        // EXPECTED vs. ACTUAL
+        assertEquals(UP_VET_FIRST_NAME, updatedVet.getFirstName());
+        assertEquals(UP_VET_LAST_NAME, updatedVet.getLastName());
+        // Verifica otros atributos actualizados
+        // ...
 
     }
+
 }
+
