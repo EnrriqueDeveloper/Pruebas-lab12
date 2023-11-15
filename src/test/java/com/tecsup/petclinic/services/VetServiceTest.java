@@ -18,6 +18,18 @@ public class VetServiceTest {
     @Autowired
     private VetService vetService;
 
+    @Test
+    public void testCreateVet() {
+        String first_name = "Joe";
+        String last_name = "Suarez";
+        Vet vet = new Vet (first_name, last_name);
+
+        Vet vet_created = this.vetService.create(vet);
+        log.info("VET CREATED :" + vet_created.toString());
+        assertNotNull(vet_created);
+        assertEquals(first_name, vet_created.getFirstName());
+        assertEquals(last_name, vet_created.getLastName());
+    }
 
     @Test
     public void testUpdateVet() {
@@ -53,6 +65,32 @@ public class VetServiceTest {
         // ...
 
     }
+    @Test
+    public void testDeleteVet() {
 
+        String FIRST_NAME = "James";
+        String LAST_NAME = "Carter";
+
+        // ------------ Crear Veterinario ---------------
+        Vet vet = new Vet(FIRST_NAME, LAST_NAME);
+        vet = this.vetService.create(vet);
+        log.info("Veterinario creado: " + vet);
+
+        // ------------ Eliminar Veterinario ---------------
+        try {
+            this.vetService.delete(vet.getId());
+        } catch (VetNotFoundException e) {
+            fail(e.getMessage());
+        }
+
+        // ------------ Validar Eliminación ---------------
+        try {
+            this.vetService.findById(vet.getId());
+            assertTrue(false, "Se esperaba VetNotFoundException");
+        } catch (VetNotFoundException e) {
+            assertTrue(true);
+        }
+
+    }
 }
 
