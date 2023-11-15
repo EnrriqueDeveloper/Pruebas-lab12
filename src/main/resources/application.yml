@@ -14,7 +14,7 @@ spring:
     # Windoows
     # url : jdbc:mysql://localhost:3306/PETCLINIC_DB?useSSL=false&serverTimezone=UTC
     username : root
-    password : anto123456789
+    password :
 
     platform : mysql
     initialization-mode : always
